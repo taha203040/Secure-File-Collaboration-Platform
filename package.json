@@ -2,11 +2,11 @@
   "name": "secure_api",
   "version": "1.0.0",
   "description": "A simple secure API using Express and TypeScript",
-  "main": "dist/app.ts",
+  "main": "dist/app.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "dev": "nodemon",
     "build": "tsc",
-    "start": "node dist/app.ts"
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,8 @@
     "@types/express": "^5.0.3",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^20.4.2",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   }

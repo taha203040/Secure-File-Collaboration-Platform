@@ -13,4 +13,5 @@ export class UserRepoMongo implements UserRep {
     async findByEmail(email: string): Promise<User | null> {
         return this.collection.findOne({ email })
     }
+  
 }

@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use('/users', userRouter);
 async function startServer() {
-    await connectMongodb("mongodb://localhost:27017/filers", "mydb");
+    await connectMongodb("mongodb://localhost:27017/", "mydb");
     app.listen(3000, () => console.log('Server running on port 3000'));
 }
 
@@ -19,3 +19,4 @@ app.use('/users', userRouter);
 
 
 app.listen(3000, () => console.log('Server running'));
+ 

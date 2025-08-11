@@ -15,4 +15,4 @@ export async function connectMongodb(uri: string, dbName: string) {
 export function getDb(): Db {
     if (!db) throw new Error("Database not initialized. Call connectMongo first.");
     return db;
-}
+} 

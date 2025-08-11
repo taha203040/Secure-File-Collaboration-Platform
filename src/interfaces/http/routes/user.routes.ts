@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express"
-import { RegistserUser } from "../../../application/use-cases/registerUser/RegisterUser"
+import {  RegistserUser } from "../../../application/use-cases/registerUser/RegisterUser"
+import { LoginUser } from "../../../application/use-cases/registerUser/LoginUser"
 import { UserRepoMongo } from "../../../domain/repositories/UserRepoMongoDb"
 import { getDb } from "../../../infrastructure/database/mongoDb/mongoClient"
 const userRouter = Router()
@@ -17,4 +18,18 @@ userRouter.post('/register', async (req: Request, res: Response) => {
         console.error(err)
     }
 })
-export default userRouter
+userRouter.get('/signin', async (req: Request, res: Response) => {
+    try {
+        const { password, email } = req.body
+        if (!password || !email)
+            return res.status(400).json({ error: "All fields are required" })
+
+        const userrepo = new UserRepoMongo(getDb())
+        const loginUser = new LoginUser(userrepo)
+        await loginUser.execute(email, password)
+        res.status(201).json({ message: "User registered successfully" })
+    } catch (error) {
+        res.status(400).json({ success: false, message: error });
+    }
+})
+export default userRouter 
