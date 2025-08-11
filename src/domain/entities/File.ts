@@ -1,6 +1,8 @@
-interface User {
-    id: string;
-    email: string;
-    password: string;
-    createAt: string
+export class User {
+  constructor(
+    public readonly id: string,
+    public email: string,
+    public password: string,
+    public username: string
+  ) { }
 }
