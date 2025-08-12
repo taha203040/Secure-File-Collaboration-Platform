@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { User } from "../../../domain/entities/File";
+import { User } from "../../../domain/entities/User_Entities";
 import { UserRep } from "../../../domain/repositories/UserRepository";
 
 export class UserRepoPostgress implements UserRep {

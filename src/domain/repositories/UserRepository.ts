@@ -1,4 +1,4 @@
-import { User } from '../entities/File'
+import { User } from '../entities/User_Entities'
 export interface UserRep {
     create(user: User): Promise<void>
     findByEmail(email: string): Promise<User | null>

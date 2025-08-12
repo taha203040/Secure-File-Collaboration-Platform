@@ -1,4 +1,4 @@
-import type { User } from "../../../domain/entities/File";
+import type { User } from "../../../domain/entities/User_Entities";
 import type { UserRep } from "../../../domain/repositories/UserRepository";
 import bcrypt from "bcrypt";
 
