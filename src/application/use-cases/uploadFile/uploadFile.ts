@@ -1,9 +1,6 @@
 import { File } from "../../../domain/entities/File_Entities";
 import { FileRepo } from "../../../domain/repositories/UploadFileRepo";
 
-
-
-
 export class UploadFile {
     constructor(private filerepo: FileRepo) {
     }

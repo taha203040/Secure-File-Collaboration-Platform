@@ -3,12 +3,10 @@ import { FileRepoPostgres } from "../../../infrastructure/database/Sql/PostgresL
 import { UploadFile } from "../../../application/use-cases/uploadFile/uploadFile";
 import multer from "multer";
 import pool from "../../../config/db";
+
+
 const filerouter = Router()
-
-
-
 const upload = multer({ dest: "uploads/" });
-
 
 filerouter.post('/upload', upload.single('file'), async (req: Request, res: Response) => {
     try {

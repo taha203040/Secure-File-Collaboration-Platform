@@ -1,5 +1,0 @@
-class UploadFile {
-    constructor() {
-
-    }
-}

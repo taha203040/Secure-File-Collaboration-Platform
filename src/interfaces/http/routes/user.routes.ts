@@ -1,12 +1,9 @@
 import { Router, Request, Response } from "express"
 import { RegistserUser } from "../../../application/use-cases/registerUser/RegisterUser"
 import { LoginUser } from "../../../application/use-cases/registerUser/LoginUser"
-import { UserRepoMongo } from "../../../domain/repositories/UserRepoMongoDb"
-import { getDb } from "../../../infrastructure/database/mongoDb/mongoClient"
-import { FileRepoPostgres, UserRepoPostgress } from "../../../infrastructure/database/Sql/PostgresLogic"
+import {  UserRepoPostgress } from "../../../infrastructure/database/Sql/PostgresLogic"
 import pool from "../../../config/db"
-import { UploadFile } from "../../../application/use-cases/uploadFile/uploadFile"
-import multer from 'multer'
+
 const userRouter = Router()
 userRouter.post('/register', async (req: Request, res: Response) => {
     try {

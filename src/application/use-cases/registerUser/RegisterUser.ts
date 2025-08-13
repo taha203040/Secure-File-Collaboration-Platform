@@ -19,4 +19,3 @@ export class RegistserUser {
     }
 }
 
-// defin the constructor  
