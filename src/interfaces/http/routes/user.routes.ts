@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express"
 import { RegistserUser } from "../../../application/use-cases/registerUser/RegisterUser"
 import { LoginUser } from "../../../application/use-cases/registerUser/LoginUser"
-import {  UserRepoPostgress } from "../../../infrastructure/database/Sql/PostgresLogic"
+import { UserRepoPostgress } from "../../../infrastructure/database/Sql/PostgresLogic"
 import pool from "../../../config/db"
 
 const userRouter = Router()
