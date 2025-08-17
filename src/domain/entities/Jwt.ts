@@ -9,10 +9,7 @@ export class JwtValidation {
 
 export interface JwtPayloadEntity {
     userId: string;
-    email: string;
-    role?: string;         // اختياري
-    iat?: number;          // issued at
-    exp?: number;          // expiry
+    email: string;      // expiry
 }
 export class JwtToken {
     constructor(

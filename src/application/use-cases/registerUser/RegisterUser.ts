@@ -7,7 +7,7 @@ export class RegistserUser {
     }
     async execute(email: string, password: string, username: string) {
         const existing = await this.userrepo.findByEmail(email)
-        if (existing) throw new Error('User not Exists')
+        if (existing) throw new Error('User already Exists')
         const hashed = await bcrypt.hash(password, 10)
         const user: User = {
             id: crypto.randomUUID(),

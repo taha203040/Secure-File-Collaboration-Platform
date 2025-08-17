@@ -1,11 +1,10 @@
-export interface Jwt {
-    generate(payload: Record<string, unknown>, expiresIn?: string): Promise<string>;
+import { JwtPayloadEntity } from "../entities/Jwt";
 
+// Jwt.ts
+export interface JwtRepo {
+    generate(payload: JwtPayloadEntity, expiresIn?: string): Promise<string>;
     validate(token: string): Promise<Record<string, unknown> | null>;
-
-    sign(payload: Record<string, unknown>, secret: string, expiresIn?: string): Promise<string>;
-
+    sign(payload: JwtPayloadEntity, secret: string): Promise<string | null> // متزامنة
     decode(token: string): Promise<Record<string, unknown> | null>;
-
     invalidate(token: string): Promise<boolean>;
 }
