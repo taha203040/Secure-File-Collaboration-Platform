@@ -44,6 +44,13 @@ export class FileRepoPostgres implements FileRepo {
             row.updated_at
         );
     }
+    async getFiles(): Promise<{ id: string; name: string }[]> {
+        const res = await this.pool.query(`SELECT id , name FROM files`)
+        return res.rows.map((row: { id: string; name: string }) => ({
+            id: row.id,
+            name: row.name
+        }));
+    }
 }
 
 
