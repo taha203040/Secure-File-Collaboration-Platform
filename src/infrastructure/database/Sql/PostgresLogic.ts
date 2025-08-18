@@ -1,8 +1,8 @@
 import { Pool } from "pg";
-import { User } from "../../../domain/entities/User_Entities";
-import { UserRep } from "../../../domain/repositories/UserRepository";
-import { FileRepo } from "../../../domain/repositories/UploadFileRepo";
-import { File } from "../../../domain/entities/File_Entities";
+import { User } from "../../../Domain/Entities/User_Entities";
+import { UserRep } from "../../../Domain/Repositories/UserRepository";
+import { FileRepo } from "../../../Domain/Repositories/UploadFileRepo";
+import { File } from "../../../Domain/Entities/File_Entities";
 
 export class UserRepoPostgress implements UserRep {
     constructor(private pool: Pool) {

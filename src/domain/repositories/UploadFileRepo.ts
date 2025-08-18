@@ -1,4 +1,4 @@
-import { File } from "../entities/File_Entities"
+import { File } from "../Entities/File_Entities"
 
 export interface FileRepo {
     upload(file: File): Promise<void>

@@ -1,7 +1,7 @@
 import express, { type Request, type Response } from 'express';
-import { connectMongodb, getDb } from './infrastructure/database/mongoDb/mongoClient';
-import userRouter from './interfaces/http/routes/user.routes';
-import filerouter from './interfaces/http/routes/file.routes';
+import { connectMongodb, getDb } from './Infrastructure/database/mongoDb/mongoClient';
+import userRouter from './Interfaces/http/Routes/user.routes';
+import filerouter from './Interfaces/http/Routes/file.routes';
 const app = express();
 app.use(express.json());
 app.use('/api/v1/users', userRouter);

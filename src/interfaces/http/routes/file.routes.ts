@@ -1,11 +1,11 @@
 import { Request, Response, Router } from "express";
-import { FileRepoPostgres } from "../../../infrastructure/database/Sql/PostgresLogic";
-import { UploadFile } from "../../../application/use-cases/uploadFile/uploadFile";
+import { FileRepoPostgres } from "../../../Infrastructure/database/Sql/PostgresLogic";
+import { UploadFile } from "../../../Application/use-cases/File-usecases/uploadFile";
 import multer from "multer";
-import pool from "../../../config/db";
+import pool from "../../../Config/db";
 import crypto from "crypto";
-import { authenticate } from "../middlewares/authMiddleware";
-import { fileScan } from "../../../infrastructure/security/fileChecker";
+import { authenticate } from "../Middlewares/authMiddleware";
+import { fileScan } from "../../../Infrastructure/security/fileChecker";
 const filerouter = Router();
 const upload = multer({ dest: "uploads/" });
 

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { LoginUser } from "../../../application/use-cases/registerUser/LoginUser";
-import { RegistserUser } from "../../../application/use-cases/registerUser/RegisterUser";
-import { UserRepoPostgress } from "../../../infrastructure/database/Sql/PostgresLogic";
-import pool from "../../../config/db";
+import { LoginUser } from "../../../Application/use-cases/User-usecases/LoginUser";
+import { RegistserUser } from "../../../Application/use-cases/User-usecases/RegisterUser";
+import { UserRepoPostgress } from "../../../Infrastructure/database/Sql/PostgresLogic";
+import pool from "../../../Config/db";
 import jwt from "jsonwebtoken";
 const userrepo = new UserRepoPostgress(pool);
 

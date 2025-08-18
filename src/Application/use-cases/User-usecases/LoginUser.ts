@@ -1,5 +1,5 @@
-import { UserRep } from "../../../domain/repositories/UserRepository";
-import { JwtRepo } from "../../../domain/repositories/jwtRepoDef";
+import { UserRep } from "../../../Domain/Repositories/UserRepository";
+import { JwtRepo } from "../../../Domain/Repositories/jwtRepoDef";
 import bcrypt from "bcrypt";
 
 export class LoginUser {

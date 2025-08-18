@@ -1,5 +1,5 @@
-import { File } from "../../../domain/entities/File_Entities";
-import { FileRepo } from "../../../domain/repositories/UploadFileRepo";
+import { File } from "../../../Domain/Entities/File_Entities";
+import { FileRepo } from "../../../Domain/Repositories/UploadFileRepo";
 
 export class UploadFile {
     constructor(private filerepo: FileRepo) {

@@ -1,4 +1,4 @@
-import type { User } from "../entities/User_Entities";
+import type { User } from "../Entities/User_Entities";
 import type { UserRep } from "./UserRepository";
 import { Collection, Db } from "mongodb"
 

@@ -1,4 +1,4 @@
-import { JwtPayloadEntity } from "../entities/Jwt";
+import { JwtPayloadEntity } from "../Entities/Jwt";
 
 // Jwt.ts
 export interface JwtRepo {
