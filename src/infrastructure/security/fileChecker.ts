@@ -1,7 +1,5 @@
 import net from 'net'
-
 import fs from 'fs'
-
 
 export const fileScan = async (filePath: string) => {
     // setup the connection with tcp client
@@ -29,4 +27,4 @@ export const fileScan = async (filePath: string) => {
             client.on("error", reject);
         })
     })
-} g
+} 

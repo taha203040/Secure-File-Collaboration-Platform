@@ -6,7 +6,6 @@ import pool from "../../../config/db";
 import crypto from "crypto";
 import { authenticate } from "../middlewares/authMiddleware";
 import { fileScan } from "../../../infrastructure/security/fileChecker";
-// import { authenticate } from "../middlewares/authMiddleware";
 const filerouter = Router();
 const upload = multer({ dest: "uploads/" });
 
