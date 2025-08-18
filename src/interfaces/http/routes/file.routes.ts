@@ -1,13 +1,13 @@
-import { Request, Response, Router } from "express";
-import { FileRepoPostgres } from "../../../Infrastructure/database/Sql/PostgresLogic";
-import { UploadFile } from "../../../Application/use-cases/File-usecases/uploadFile";
-import multer from "multer";
 import pool from "../../../Config/db";
 import crypto from "crypto";
-import { authenticate } from "../Middlewares/authMiddleware";
-// import { fileScan } from "../../../Infrastructure/security/fileChecker";
 import { GetFiles } from "../../../Application/use-cases/File-usecases/Files_Gets";
 import { GetFileByid } from "../../../Application/use-cases/File-usecases/GetfileByid";
+import jwt from 'jsonwebtoken'
+import { authenticate } from "../middlewares/authMiddleware";
+import { Router, Response, Request } from "express";
+import { FileRepoPostgres } from "../../../Infrastructure/database/Sql/PostgresLogic";
+import { UploadFile } from "../../../Application/use-cases/File-usecases/uploadFile";
+import multer from 'multer'
 const filerouter = Router();
 const upload = multer({ dest: "uploads/" });
 
@@ -32,13 +32,6 @@ filerouter.post(
         }
     }
 )
-filerouter.post("/generate:id", authenticate, async (req: Request, res: Response) => {
-    const { id } = req.params
-    // check if the id in db after we genreate a link file and be temporaly
-    const filerepo = new FileRepoPostgres(pool);
-    const getFiles = new GetFileByid(filerepo);
-
-})
 filerouter.get("/file/:id", authenticate, async (req: Request, res: Response) => {
     // extract id of file
     const { id } = req.params
@@ -59,15 +52,50 @@ filerouter.get("/getfiles", authenticate, async (req: Request, res: Response) =>
     try {
         const filerepo = new FileRepoPostgres(pool);
         const getFiles = new GetFiles(filerepo);
-
         const files = await getFiles.execute();
         if (files.length === 0) {
             res.send({ msg: 'Not Found' })
         }
         res.status(200).json({ files });
+
     } catch (error) {
-        res.status(404).json({ message: "No files found" });
+        console.log(error)
+        res.status(500).json({ error: "Failed to upload file" })
+    }
+
+})
+
+
+
+filerouter.get("/generate/:id", authenticate, async (req: Request, res: Response) => {
+    const { id } = req.params
+    // check if the id in db after we genreate a link file and be temporaly
+    const token = jwt.sign({ fileId: id }, '21299234kksdf', { expiresIn: '20m' })
+    res.send({ url: `http://localhost:3000/api/v1/files/secure/${token}` })
+})
+
+
+
+filerouter.get("/secure/:token", async (req: Request, res: Response) => {
+    try {
+        const { token } = req.params
+        if (!token) {
+            res.json({ message: `Access Denied}` });
+        }
+        //@ts-ignore
+        const decoded = jwt.verify(token, '21299234kksdf') as { fileId: string }
+        const filerepo = new FileRepoPostgres(pool);
+        const getFile = new GetFileByid(filerepo)
+        const file = await getFile.execute(decoded.fileId)
+
+        if (file) {
+            const { id, ...safeFile } = file
+            res.send({ safeFile })
+
+        } else res.send({ msg: 'File not found ' })
+    }
+    catch (e) {
+        res.status(401).json({ message: "Link expired or invalid" });
     }
 });
-
 export default filerouter;
