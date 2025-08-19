@@ -3,6 +3,15 @@ import { connectMongodb, getDb } from './Infrastructure/database/mongoDb/mongoCl
 import userRouter from './Interfaces/http/Routes/user.routes';
 import filerouter from './Interfaces/http/Routes/file.routes';
 const app = express();
+import rateLimit from 'express-rate-limit';
+
+const limmiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: "Too many requests from this IP, please try again later.",
+    standardHeaders: true,
+    legacyHeaders: false
+})
 app.use(express.json());
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/files', filerouter);
